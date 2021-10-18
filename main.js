@@ -50,7 +50,12 @@ var app = new Vue({
       return this.todos.filter(function (el) {
         return this.current < 0 ? true : el.state === this.current;
       }, this);
-    }
+    },
+    labels() {
+      return this.options.reduce((a, b) => {
+        return Object.assign(a, { [b.value] : b.label });
+      }, {});
+    },
   },
   watch: {
     todos: {
