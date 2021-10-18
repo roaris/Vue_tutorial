@@ -30,6 +30,9 @@ var app = new Vue({
         state: 0
       });
       comment.value = '';
+    },
+    doChangeState: function(item) {
+      item.state = item.state ? 0 : 1;
     }
   },
   watch: {
