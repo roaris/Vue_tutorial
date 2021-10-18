@@ -19,6 +19,12 @@ var app = new Vue({
   el: '#app',
   data: {
     todos: [],
+    options: [
+      { value: -1, label: 'すべて' },
+      { value: 0, label: '作業中' },
+      { value: 1, label: '完了' },
+    ],
+    current: -1
   },
   methods: {
     doAdd: function() {
@@ -37,6 +43,13 @@ var app = new Vue({
     doRemove: function(item) {
       var index = this.todos.indexOf(item);
       this.todos.splice(index, 1);
+    }
+  },
+  computed: {
+    computedTodos: function() {
+      return this.todos.filter(function (el) {
+        return this.current < 0 ? true : el.state === this.current;
+      }, this);
     }
   },
   watch: {
